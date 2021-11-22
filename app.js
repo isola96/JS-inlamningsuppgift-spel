@@ -162,7 +162,36 @@ const button1 = document.querySelector('#first-choice');
 const button2 = document.querySelector('#second-choice');
 const button3 = document.querySelector('#third-choice');
 const button4 = document.querySelector('#fourth-choice');
-
+/*
 let random = students[Math.floor(Math.random() * students.length)].name;
 console.log(random);
+*/
 
+let random = (a) => {
+	for (let i = a.length -1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+};
+
+random(students);
+
+const newQuestion = () => {
+	showImageEl.setAttribute('src', students[0].image);
+
+	const answersEl = [students[0], students[1], students[2], students[3]];
+
+	// console.log(answersEl);
+	
+	button1.setAttribute('data-user', answersEl[0].name);
+	button2.setAttribute('data-user', answersEl[1].name);
+	button3.setAttribute('data-user', answersEl[2].name);
+	button4.setAttribute('data-user', answersEl[3].name);
+
+	button1.innerHTML = answersEl[0].name;
+	button2.innerHTML = answersEl[1].name;
+	button3.innerHTML = answersEl[2].name;
+	button4.innerHTML = answersEl[3].name;
+};
+
+newQuestion();
