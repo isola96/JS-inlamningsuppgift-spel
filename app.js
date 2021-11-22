@@ -162,6 +162,7 @@ const button1 = document.querySelector('#first-choice');
 const button2 = document.querySelector('#second-choice');
 const button3 = document.querySelector('#third-choice');
 const button4 = document.querySelector('#fourth-choice');
+const myButtons = document.querySelector('#my-buttons');
 /*
 let random = students[Math.floor(Math.random() * students.length)].name;
 console.log(random);
@@ -196,3 +197,25 @@ const newQuestion = () => {
 };
 
 newQuestion();
+
+let rightAnswer = 0;
+let wrongAnswer = 0;
+let amountOfGuesses = 0;
+const arrayOfRightAnswer = [];
+const arrayOfWrongAnswers = [];
+
+myButtons.addEventListener('click', (e) => {
+	amountOfGuesses++;
+	// console.log(e);
+	// console.log(e.target.dataset.user);
+	if (e.target.dataset.user === students[0].name) {
+		rightAnswer++;
+		arrayOfRightAnswer.push(students[0].name);
+	} else {
+		wrongAnswer++;
+		arrayOfWrongAnswers.push(e.target.dataset.user);
+	}
+
+	random(students);
+	newQuestion();
+});
