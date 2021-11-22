@@ -220,9 +220,7 @@ myButtons.addEventListener('click', (e) => {
 	newQuestion();
 
 	if (amountOfGuesses === 5) {
-		let para = document.createElement('P');
-		para.innerText = ('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
-		document.body.appendChild(para);
+		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
 		rightAnswer = 0;
 		wrongAnswer = 0;
 		amountOfGuesses = 0;
