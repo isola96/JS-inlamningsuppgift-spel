@@ -218,4 +218,16 @@ myButtons.addEventListener('click', (e) => {
 
 	random(students);
 	newQuestion();
+
+	if (amountOfGuesses === 5) {
+		let para = document.createElement('P');
+		para.innerText = ('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
+		document.body.appendChild(para);
+		rightAnswer = 0;
+		wrongAnswer = 0;
+		amountOfGuesses = 0;
+	};
 });
+
+console.log(arrayOfWrongAnswers);
+console.log(arrayOfRightAnswer);
