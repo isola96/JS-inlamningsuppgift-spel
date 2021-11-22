@@ -166,7 +166,7 @@ const button4 = document.querySelector('#fourth-choice');
 let random = students[Math.floor(Math.random() * students.length)].name;
 console.log(random);
 */
-
+// get a random student
 let random = (a) => {
 	for (let i = a.length -1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
@@ -175,13 +175,14 @@ let random = (a) => {
 };
 
 random(students);
-
+// get a new student image
 const newQuestion = () => {
 	showImageEl.setAttribute('src', students[0].image);
-
 	const answersEl = [students[0], students[1], students[2], students[3]];
 
-	// console.log(answersEl);
+	// console.log(answersEl);§
+
+	random(answersEl);
 	
 	button1.setAttribute('data-user', answersEl[0].name);
 	button2.setAttribute('data-user', answersEl[1].name);
