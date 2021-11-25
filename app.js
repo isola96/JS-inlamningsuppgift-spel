@@ -157,17 +157,21 @@ const students = [
 	},
 ];
 
+studentsCopy = [...students];
 const showImageEl = document.querySelector('#img-classmates');
 const button1 = document.querySelector('#first-choice');
 const button2 = document.querySelector('#second-choice');
 const button3 = document.querySelector('#third-choice');
 const button4 = document.querySelector('#fourth-choice');
 const myButtons = document.querySelector('#my-buttons');
-/*
-let random = students[Math.floor(Math.random() * students.length)].name;
-console.log(random);
-*/
-// get a random student
+
+let correctStudent;
+let rightAnswer = 0;
+let wrongAnswer = 0;
+let amountOfGuesses = 0;
+const arrayOfRightAnswer = [];
+const arrayOfWrongAnswers = [];
+
 let random = (a) => {
 	for (let i = a.length -1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
@@ -175,15 +179,17 @@ let random = (a) => {
 	}
 };
 
-random(students);
+random(studentsCopy);
 // get a new student image
 const newQuestion = () => {
-	showImageEl.setAttribute('src', students[0].image);
-	const answersEl = [students[0], students[1], students[2], students[3]];
+	showImageEl.setAttribute('src', studentsCopy[0].image);
+	const answersEl = [studentsCopy[0], students[1], students[2], students[3]];
 
-	// console.log(answersEl);§
+	// console.log(answersEl);
 
+	correctStudent = studentsCopy[0];
 	random(answersEl);
+	console.log(correctStudent);
 	
 	button1.setAttribute('data-user', answersEl[0].name);
 	button2.setAttribute('data-user', answersEl[1].name);
@@ -194,23 +200,18 @@ const newQuestion = () => {
 	button2.innerHTML = answersEl[1].name;
 	button3.innerHTML = answersEl[2].name;
 	button4.innerHTML = answersEl[3].name;
+
+	studentsCopy.shift();
 };
-
 newQuestion();
-
-let rightAnswer = 0;
-let wrongAnswer = 0;
-let amountOfGuesses = 0;
-const arrayOfRightAnswer = [];
-const arrayOfWrongAnswers = [];
 
 myButtons.addEventListener('click', (e) => {
 	amountOfGuesses++;
 	// console.log(e);
 	// console.log(e.target.dataset.user);
-	if (e.target.dataset.user === students[0].name) {
+	if (e.target.dataset.user === studentsCopy[0].name) {
 		rightAnswer++;
-		arrayOfRightAnswer.push(students[0].name);
+		arrayOfRightAnswer.push(studentsCopy[0].name);
 	} else {
 		wrongAnswer++;
 		arrayOfWrongAnswers.push(e.target.dataset.user);
@@ -219,13 +220,13 @@ myButtons.addEventListener('click', (e) => {
 	random(students);
 	newQuestion();
 
-	if (amountOfGuesses === students.length) {
+	if (studentsCopy.length === 0) {
 		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
 		rightAnswer = 0;
 		wrongAnswer = 0;
 		amountOfGuesses = 0;
 	};
 });
-
+console.log(amountOfGuesses);
 console.log(arrayOfWrongAnswers);
 console.log(arrayOfRightAnswer);
