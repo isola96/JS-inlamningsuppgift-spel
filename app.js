@@ -219,7 +219,7 @@ myButtons.addEventListener('click', (e) => {
 	random(students);
 	newQuestion();
 
-	if (amountOfGuesses === 5) {
+	if (amountOfGuesses === students.length) {
 		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
 		rightAnswer = 0;
 		wrongAnswer = 0;
