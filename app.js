@@ -156,8 +156,10 @@ const students = [
 		image: "images/wiktoria-dobrzewinska.jpg",
 	},
 ];
-
+// kopia av orginal-array
 studentsCopy = [...students];
+
+// mina variables
 const showImageEl = document.querySelector('#img-classmates');
 const button1 = document.querySelector('#first-choice');
 const button2 = document.querySelector('#second-choice');
@@ -172,24 +174,19 @@ let amountOfGuesses = 0;
 const arrayOfRightAnswer = [];
 const arrayOfWrongAnswers = [];
 
-let random = (a) => {
-	for (let i = a.length -1; i > 0; i--) {
+let random = (array) => {
+	for (let i = array.length -1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
-		[a[i], a[j]] = [a[j], a[i]];
+		[array[i], array[j]] = [array[j], array[i]];
 	}
 };
 
-random(studentsCopy);
-// get a new student image
 const newQuestion = () => {
 	showImageEl.setAttribute('src', studentsCopy[0].image);
-	const answersEl = [studentsCopy[0], students[1], students[2], students[3]];
-
-	// console.log(answersEl);
+	let answersEl = [studentsCopy[0], studentsCopy[1], studentsCopy[2], studentsCopy[3]];
 
 	correctStudent = studentsCopy[0];
 	random(answersEl);
-	console.log(correctStudent);
 	
 	button1.setAttribute('data-user', answersEl[0].name);
 	button2.setAttribute('data-user', answersEl[1].name);
@@ -200,15 +197,15 @@ const newQuestion = () => {
 	button2.innerHTML = answersEl[1].name;
 	button3.innerHTML = answersEl[2].name;
 	button4.innerHTML = answersEl[3].name;
-
-	studentsCopy.shift();
+	
 };
+
+random(studentsCopy);
 newQuestion();
 
 myButtons.addEventListener('click', (e) => {
 	amountOfGuesses++;
-	// console.log(e);
-	// console.log(e.target.dataset.user);
+
 	if (e.target.dataset.user === studentsCopy[0].name) {
 		rightAnswer++;
 		arrayOfRightAnswer.push(studentsCopy[0].name);
@@ -216,17 +213,15 @@ myButtons.addEventListener('click', (e) => {
 		wrongAnswer++;
 		arrayOfWrongAnswers.push(e.target.dataset.user);
 	}
-
-	random(students);
-	newQuestion();
-
-	if (studentsCopy.length === 0) {
+	
+	if (amountOfGuesses === 15) {
 		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong');
 		rightAnswer = 0;
 		wrongAnswer = 0;
 		amountOfGuesses = 0;
 	};
+
+	studentsCopy.shift();	
+	random(students);
+	newQuestion();
 });
-console.log(amountOfGuesses);
-console.log(arrayOfWrongAnswers);
-console.log(arrayOfRightAnswer);
