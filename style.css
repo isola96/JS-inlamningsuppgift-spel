@@ -35,11 +35,18 @@ h1 {
     text-align: center;
     border: none;
     margin: 1.5%;
+    font-size: 1.2em;
+    width: 400px;
+    height: 40px;
 }
 
-.btn a:hover {
-    background-color: #a5a89f;
-    cursor: pointer;
+.my-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.my-footer p {
+    color: #3C403D;    
 }
 
 @media only screen and (min-width: 768px) {
