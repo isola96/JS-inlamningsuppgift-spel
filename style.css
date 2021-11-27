@@ -10,6 +10,15 @@ h1 {
     text-align: center;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+footer p {
+    color: #3C403D;    
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -41,14 +50,6 @@ h1 {
     height: 60px;
 }
 
-.my-footer {
-    display: flex;
-    justify-content: center;
-}
-
-.my-footer p {
-    color: #3C403D;    
-}
 
 @media only screen and (min-width: 600px) {
     body {
