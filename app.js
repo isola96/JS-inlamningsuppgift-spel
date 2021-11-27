@@ -219,7 +219,7 @@ myButtons.addEventListener('click', (e) => {
 	}
 	
 	if (amountOfGuesses === 15) {
-		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong. Click button to start game again');
+		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong. Press the button to try again');
 		rightAnswer = 0;
 		wrongAnswer = 0;
 		amountOfGuesses = 0;
