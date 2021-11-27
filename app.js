@@ -174,6 +174,7 @@ let amountOfGuesses = 0;
 const arrayOfRightAnswer = [];
 const arrayOfWrongAnswers = [];
 
+// random
 let random = (array) => {
 	for (let i = array.length -1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
@@ -181,6 +182,7 @@ let random = (array) => {
 	}
 };
 
+// ny fråga/bild
 const newQuestion = () => {
 	showImageEl.setAttribute('src', studentsCopy[0].image);
 	let answersEl = [studentsCopy[0], studentsCopy[1], studentsCopy[2], studentsCopy[3]];
@@ -200,9 +202,11 @@ const newQuestion = () => {
 	
 };
 
+// kallar på funktionerna
 random(studentsCopy);
 newQuestion();
 
+// click-event
 myButtons.addEventListener('click', (e) => {
 	amountOfGuesses++;
 
