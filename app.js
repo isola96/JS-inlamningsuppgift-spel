@@ -214,7 +214,6 @@ myButtons.addEventListener('click', (e) => {
 	if (e.target.dataset.user === correctStudent.name) { // ändrar till namnen istället 
 		rightAnswer++;
 		arrayOfRightAnswer.push(correctStudent.name); // ändrar till namnen istället 
-		console.log()
 	} else {
 		wrongAnswer++;
 		arrayOfWrongAnswers.push(correctStudent.name); // ändrar till namnen istället 
