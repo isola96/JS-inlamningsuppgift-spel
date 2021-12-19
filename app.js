@@ -157,7 +157,7 @@ const students = [
 	},
 ];
 // kopia av orginal-array
-studentsCopy = [...students];
+let studentsCopy = [...students]; // inte deklarerat variabel
 
 // mina variables
 const showImageEl = document.querySelector('#img-classmates');
@@ -189,17 +189,18 @@ const newQuestion = () => {
 
 	correctStudent = studentsCopy[0];
 	random(answersEl);
-	
+
 	button1.setAttribute('data-user', answersEl[0].name);
 	button2.setAttribute('data-user', answersEl[1].name);
 	button3.setAttribute('data-user', answersEl[2].name);
 	button4.setAttribute('data-user', answersEl[3].name);
 
 	button1.innerHTML = answersEl[0].name;
-	button2.innerHTML = answersEl[1].name;
+	button2.innerHTML = answersEl[1].name;	
 	button3.innerHTML = answersEl[2].name;
 	button4.innerHTML = answersEl[3].name;
-	
+
+	studentsCopy.shift(); // tar bort det rätta svaret
 };
 
 // kallar på funktionerna
@@ -210,22 +211,26 @@ newQuestion();
 myButtons.addEventListener('click', (e) => {
 	amountOfGuesses++;
 
-	if (e.target.dataset.user === studentsCopy[0].name) {
+	if (e.target.dataset.user === correctStudent.name) { // ändrar till namnen istället 
 		rightAnswer++;
-		arrayOfRightAnswer.push(studentsCopy[0].name);
+		arrayOfRightAnswer.push(correctStudent.name); // ändrar till namnen istället 
+		console.log()
 	} else {
 		wrongAnswer++;
-		arrayOfWrongAnswers.push(e.target.dataset.user);
+		arrayOfWrongAnswers.push(correctStudent.name); // ändrar till namnen istället 
 	}
 	
-	if (amountOfGuesses === 15) {
-		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct and got ' + wrongAnswer + ' wrong. Press the button to try again');
+	if (amountOfGuesses === 10) {
+		alert('You made ' + amountOfGuesses + ' guesses and got ' + rightAnswer + ' correct ' + ' and you got ' + wrongAnswer + ' wrong. ' + ' Press the button to try again');
 		rightAnswer = 0;
 		wrongAnswer = 0;
 		amountOfGuesses = 0;
+		arrayOfRightAnswer.length = 0; // rensar array med rätt svar
+		arrayOfWrongAnswers.length = 0; // rensar array med fel svar
+		studentsCopy = [...students]; // gör så att den är full igen med alla namnen
 	};
 
-	studentsCopy.shift();	
-	random(students);
+	random(studentsCopy);
 	newQuestion();
 });
+
